@@ -1,0 +1,85 @@
+.calculator-container
+    background: $white
+    border-radius: 20px
+    border-bottom-right-radius: 100px
+    box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.3)
+    padding: 15px
+    display: table
+    margin: auto
+    form
+        .field
+            margin-right: 18px
+            .label
+                color: $smokey-grey
+                font-size: 14px
+            input
+                border-radius: 10px
+                color: $off-black
+                cursor: pointer
+                font-weight: 800
+                font-size: 18px
+                max-width: 160px
+                padding: 10px 16px
+                &:focus
+                    border: 1px solid $purple
+                &.is-danger
+                    border: 1px solid $light-red
+            .help
+                font-size: 14px
+                font-weight: 400
+                font-style: italic
+                &.is-danger
+                    color: $light-red
+    .submit-field
+        position: relative
+        &::before
+            background: $light-grey
+            content: ''
+            height: 2px
+            left: 0
+            transform: translateY(-50%)
+            top: 50%
+            position: absolute
+            width: 100%
+        .control
+            justify-content: center
+            button
+                background: $purple
+                border: none
+                border-radius: 100%
+                cursor: pointer
+                padding: 16px
+                position: relative
+                &::before
+                    background: $off-black
+                    border-radius: 100%
+                    content: ''
+                    height: 100%
+                    left: 50%
+                    position: absolute
+                    top: 50%
+                    transform: translate(-50%, -50%) scale(0)
+                    transition: all 0.3s
+                    width: 100%
+                &:hover
+                    &::before
+                        transform: translate(-50%, -50%) scale(1)
+                img
+                    position: relative
+
+
+// RESPONSIVE DESKTOP
+@mixin calculator-desktop
+    .calculator-container
+        padding: 35px
+        width: 700px
+        form
+            .field
+                input
+                    font-size: 25px
+                    max-width: 160px
+        .submit-field
+            .control
+                justify-content: flex-end
+                button
+                    padding: 18px
