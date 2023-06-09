@@ -8,7 +8,8 @@
     margin: auto
     form
         .field
-            margin-right: 18px
+            margin: 0 18px 0 0
+            position: relative
             .label
                 color: $smokey-grey
                 font-size: 14px
@@ -18,14 +19,13 @@
                 cursor: pointer
                 font-weight: 800
                 font-size: 18px
-                max-width: 160px
                 padding: 10px 16px
                 &:focus
                     border: 1px solid $purple
                 &.is-danger
                     border: 1px solid $light-red
             .help
-                font-size: 14px
+                font-size: 12px
                 font-weight: 400
                 font-style: italic
                 &.is-danger
@@ -77,7 +77,10 @@
             .field
                 input
                     font-size: 25px
-                    max-width: 160px
+                .help
+                    position: absolute
+                    bottom: 0
+                    transform: translateY(calc(100% + 5px))
         .submit-field
             .control
                 justify-content: flex-end

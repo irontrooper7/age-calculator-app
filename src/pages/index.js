@@ -1,4 +1,4 @@
-import Form from '../components/Form'
+import Form from '../components/AgeForm'
 import Head from 'next/head'
 
 export default function Home() {
