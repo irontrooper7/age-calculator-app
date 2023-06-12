@@ -1,5 +1,6 @@
-import { Formik, Form, Field } from 'formik'
-import * as Yup from 'yup'
+import { useState } from 'react';
+import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
 
 const DataUserDudasComentariosSchema = Yup.object().shape({
 	day: Yup.string()
@@ -18,6 +19,26 @@ const DataUserDudasComentariosSchema = Yup.object().shape({
 });
 
 export default function AgeForm() {
+
+	const [dayValue, setDayValue] = useState();
+	const [monthValue, setMonthValue] = useState();
+	const [yearValue, setYearValue] = useState();
+
+	function ageCalculate(formDate) {
+		let formDateValue = formDate;
+		let currentDate = new Date();
+		let oneDay = 24 * 60 * 60 * 1000; // Number of milliseconds in a day
+		let dateDifferences = Math.floor((currentDate - formDateValue) / oneDay);
+		let years = Math.floor(dateDifferences / 365); // Approximately 365 days in a year
+		let remainingMonths = dateDifferences % 365; // Calculate the remaining months after calculating the years
+		let months = Math.floor(remainingMonths / 30); // About 30 days in a month
+		let days = remainingMonths % 30; // Calculate the remaining days after calculating the months
+
+		setDayValue(days);
+		setMonthValue(months);
+		setYearValue(years);
+	}
+
 	return (
 		<div className='form'>
 			<Formik
@@ -27,7 +48,8 @@ export default function AgeForm() {
 					let day = values.day;
 					let month = values.month;
 					let year = values.year;
-					console.log(day, month, year);
+					let userDate = new Date(year, month-1, day);
+					ageCalculate(userDate);
 				}}
 			>
 				{({ errors, touched }) => (		
@@ -66,9 +88,9 @@ export default function AgeForm() {
 				)}
 			</Formik>
 			<div className='form-results'>
-				<h2><span>--</span> years</h2>
-				<h2><span>--</span> months</h2>
-				<h2><span>--</span> days</h2>
+				<h2><span>{yearValue ? yearValue : '--'}</span> years</h2>
+				<h2><span>{monthValue ? monthValue : '--'}</span> months</h2>
+				<h2><span>{dayValue ? dayValue : '--'}</span> days</h2>
 			</div>
 		</div>
 	)
